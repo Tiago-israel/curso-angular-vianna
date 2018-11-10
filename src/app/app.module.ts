@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms'
+import { CardViewComponent } from './restaurantes/components/card-view/card-view.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CardViewComponent
   ],
   imports: [
     BrowserModule,
