@@ -1,5 +1,4 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
 import { Restaurante } from '../../models/restaurante';
 
 @Component({
@@ -9,13 +8,24 @@ import { Restaurante } from '../../models/restaurante';
 })
 export class CardViewComponent implements OnInit {
 
+  @Input('restaurante')
   public restaurante: Restaurante = new Restaurante();
+
+  @Output("restauranteEmitter")
+  public restauranteEmitter: EventEmitter<Restaurante>
+    = new EventEmitter<Restaurante>();
 
   constructor() { }
 
   ngOnInit() {
-    this.restaurante.nome = "São Bartolomeu";
+  }
 
+  public adicionarPonto() {
+    if (this.restaurante.nota < 5) {
+      this.restaurante.nota += .1;
+      this.restaurante.nota = parseFloat(this.restaurante.nota.toFixed(2));
+    }
+    this.restauranteEmitter.emit(this.restaurante);
   }
 
 }

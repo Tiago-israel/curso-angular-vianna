@@ -2,11 +2,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-6 mt-3">
-                    <app-card-view></app-card-view>
-                </div>
-                <div class="col-md-6 mt-3">
-                    <app-card-view></app-card-view>
+                <div *ngFor="let rest of restaurantes" class="col-md-6 mt-2">
+                    <app-card-view [restaurante]="rest" (restauranteEmitter)="obterRestaurante($event)"></app-card-view>
                 </div>
             </div>
         </div>
