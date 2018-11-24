@@ -1,0 +1,5 @@
+<div class="row">
+  <div *ngFor="let rest of restaurantes" class="col-md-6 mt-2">
+    <app-card-view [restaurante]="rest" (restauranteEmitter)="obterRestaurante($event)"></app-card-view>
+  </div>
+</div>
