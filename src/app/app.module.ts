@@ -1,8 +1,9 @@
+import { GlobalErrorHandler } from './core/global-error-handler';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms'
 import { CardViewComponent } from './restaurantes/components/card-view/card-view.component';
 import { FormComponent } from './restaurantes/components/form/form.component';
 import { RestaurantesService } from './restaurantes/services/restaurantes.service';
@@ -12,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './menu/menu.component';
 import { AppRoutingModule } from './app.routing.module';
 import { MainComponent } from './restaurantes/components/main/main.component';
+import { LoadingModule } from './core/loading/loading.module';
 
 @NgModule({
   declarations: [
@@ -27,10 +29,12 @@ import { MainComponent } from './restaurantes/components/main/main.component';
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    LoadingModule,
     ToastrModule.forRoot()
   ],
   providers: [
-    RestaurantesService
+    RestaurantesService,
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

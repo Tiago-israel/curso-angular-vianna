@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http"
 import { Observable } from "rxjs";
 import { Restaurante } from "../models/restaurante";
+import {delay} from 'rxjs/operators'
 
 @Injectable()
 export class RestaurantesService {
@@ -11,7 +12,7 @@ export class RestaurantesService {
     public constructor(private http: HttpClient) { }
 
     public buscarTodos(): Observable<Restaurante[]> {
-        return this.http.get<Restaurante[]>(this.apiUrl);
+        return this.http.get<Restaurante[]>(this.apiUrl).pipe(delay(2000));
     }
 
     public buscarPorId(id: number): Observable<Restaurante> {
@@ -31,4 +32,5 @@ export class RestaurantesService {
     }
 
 
+    
 }
