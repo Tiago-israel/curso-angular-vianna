@@ -11,7 +11,7 @@
             {{restaurante.nota}}
           </a>
         </div>
-        <p class="my-card-title">{{restaurante.nome}}</p>
+        <p class="my-card-title"><a (click)="editar()">{{restaurante.nome}}</a></p>
         <p [innerHtml]="restaurante.descricao"></p>
         <p [innerHtml]="restaurante.distancia"></p>
       </div>

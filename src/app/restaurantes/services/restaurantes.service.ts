@@ -12,7 +12,7 @@ export class RestaurantesService {
     public constructor(private http: HttpClient) { }
 
     public buscarTodos(): Observable<Restaurante[]> {
-        return this.http.get<Restaurante[]>(this.apiUrl).pipe(delay(2000));
+        return this.http.get<Restaurante[]>(this.apiUrl).pipe(delay(500));
     }
 
     public buscarPorId(id: number): Observable<Restaurante> {

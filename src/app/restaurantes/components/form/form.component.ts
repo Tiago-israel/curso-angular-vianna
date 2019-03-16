@@ -3,6 +3,7 @@ import { Restaurante } from '../../models/restaurante';
 import { NgForm } from '@angular/forms';
 import { RestaurantesService } from '../../services/restaurantes.service';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -16,28 +17,46 @@ export class FormComponent implements OnInit {
 
   constructor(
     private restauranteService: RestaurantesService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    const { restaurante } = this.activatedRoute.snapshot.data;
+    if (restaurante) {
+      this.restaurante = restaurante;
+    }
+  }
 
+  public sucesso = (): void => {
+    this.toastr.success('O restaurante foi salvo com sucesso!', 'Sucesso!');
+  }
+
+  public erro = (error): void => {
+    this.toastr.error('Ops, houve um ao salvar o restaurante', 'Erro!');
+  }
+
+  public finalizar = (): void => {
+    this.router.navigate(['restaurantes']);
   }
 
 
+
   public salvar(): void {
-    this.restauranteService.salvar(this.restaurante).subscribe(
-      (restaurante) => {
-        this.toastr.success('O restaurante foi salvo com sucesso!', 'Sucesso!');
-      },
-      (error) => {
-        this.toastr.error('Ops, houve um ao salvar o restaurante', 'Erro!');
-      },
-      () => {
-        this.form.reset();
-        this.restaurante = new Restaurante();
-      }
-    );
-    console.log(this.restaurante);
+    if (this.restaurante.id) {
+      this.restauranteService.editar(this.restaurante, this.restaurante.id).subscribe(
+        this.sucesso,
+        this.erro,
+        this.finalizar
+      );
+    } else {
+      this.restauranteService.salvar(this.restaurante).subscribe(
+        this.sucesso,
+        this.erro,
+        this.finalizar
+      );
+    }
   }
 
 }

@@ -21,7 +21,7 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.buscarRestaurantes();
-    
+
   }
 
   private buscarRestaurantes(): void {
@@ -29,9 +29,6 @@ export class MainComponent implements OnInit {
     this.restaurantesService.buscarTodos().subscribe(
       restaurantes => {
         this.restaurantes = restaurantes;
-        this.restaurantes.forEach(r => {
-          r.nota = 0;
-        })
         this.loadingService.hide();
       }
     )
@@ -39,6 +36,12 @@ export class MainComponent implements OnInit {
 
   public obterRestaurante(restaurante: Restaurante): void {
     this.toastr.info(`${restaurante.nome} avaliado com sucesso!`, 'Sucesso!');
+  }
+
+  public pontuarRestaurante = (restaurante: Restaurante): void => {
+    this.restaurantesService.editar(restaurante, restaurante.id).subscribe(() => {
+      this.toastr.info(`${restaurante.nome} avaliado com sucesso!`, 'Sucesso!');
+    })
   }
 
 }
