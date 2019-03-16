@@ -13,7 +13,6 @@ export class LoadingComponent implements OnInit {
     ngOnInit(): void {
         LoadingService.loading.subscribe(
             isLoading => {
-                debugger
                 this.isLoading = isLoading;
             }
         )

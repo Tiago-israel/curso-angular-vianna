@@ -7,7 +7,6 @@ export class LoadingService {
     public static loading: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     public show(): void {
-        debugger
         LoadingService.loading.emit(true);
     }
 
