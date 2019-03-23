@@ -13,6 +13,7 @@ export class GlobalErrorHandler extends ErrorHandler {
         if (error instanceof HttpErrorResponse) {
             this.httpErro(error);
         }
+        throw new Error(error)
     }
 
     private httpErro(erro: HttpErrorResponse) {

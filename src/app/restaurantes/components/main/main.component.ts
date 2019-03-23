@@ -21,7 +21,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.buscarRestaurantes();
-
   }
 
   private buscarRestaurantes(): void {

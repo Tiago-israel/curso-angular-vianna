@@ -2,9 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http"
 import { Observable } from "rxjs";
 import { Restaurante } from "../models/restaurante";
-import {delay} from 'rxjs/operators'
+import { delay } from 'rxjs/operators'
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class RestaurantesService {
 
     private apiUrl: string = 'http://localhost:3000/restaurantes';
@@ -32,5 +34,5 @@ export class RestaurantesService {
     }
 
 
-    
+
 }

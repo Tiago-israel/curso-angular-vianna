@@ -7,22 +7,17 @@ import { RestauranteResolver } from "./restaurantes/resolvers/restaurante.resolv
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'restaurantes',
+        redirectTo: 'main',
         pathMatch: 'full'
     },
     {
-        path: 'restaurantes',
-        component: MainComponent
+        path:'main',
+        loadChildren: '../app/main/main.module#MainModule'
     },
     {
-        path: 'cadastrar-restaurantes',
-        component: FormComponent
+        path:'restaurantes',
+        loadChildren: '../app/restaurantes/restaurantes.module#RestaurantesModule'
     },
-    {
-        path: 'restaurantes/:id',
-        component: FormComponent,
-        resolve: { restaurante: RestauranteResolver }
-    }
 
 ]
 @NgModule({

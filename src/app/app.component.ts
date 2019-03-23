@@ -1,7 +1,4 @@
-import { LoadingService } from './core/loading/loading.service';
 import { Component, OnInit } from '@angular/core';
-import { Restaurante } from './restaurantes/models/restaurante';
-import { RestaurantesService } from './restaurantes/services/restaurantes.service';
 
 @Component({
   selector: 'app-root',
